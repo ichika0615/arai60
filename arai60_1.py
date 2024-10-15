@@ -1,5 +1,3 @@
-"""Python
-
 class Solution:
     def hasCycle(self, head: Optional[ListNode]) -> bool:
         hashset = set()
@@ -11,5 +9,4 @@ class Solution:
             current = current.next
         
         return False
-
-"""
+    
