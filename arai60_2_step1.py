@@ -1,13 +1,13 @@
 class Solution:
     def detectCycle(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        visited_node = set()
+        visited_nodes = set()
         ans_idx = 0
         current = head
 
         while current is not None:
-            if current in visited_node:
+            if current in visited_nodes:
                 return current
-            visited_node.add(current)
+            visited_nodes.add(current)
             current = current.next
             ans_idx += 1
         return 
