@@ -14,7 +14,7 @@ class Solution:
 
 # ネーミングを改めた。
 # 1発で解けた。嬉しい。
-# return に何を返せばいいのかわからず、ans_idxという謎の変数が初期化されている。普通にcurrentを返せばいい。
+# returnに何を返せばいいのかわからず、ans_idxという謎の変数が初期化されている。普通にcurrentを返せばいい。
 
 # Follow up: Can you solve it using O(1) (i.e. constant) memory?
 # フロイドの循環検出も使えるかと思ったがよく考えれば難しい。文字通り循環を検出できるだけ。
@@ -31,3 +31,4 @@ class Solution:
 """
 
 #どこで出会うかなんてわからない。
+
