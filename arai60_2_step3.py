@@ -60,6 +60,6 @@ class Solution:
                     start_node = start_node.next
         
         return None
-
+#AC
 #むっずー
     
