@@ -41,7 +41,7 @@ class Solution:
 class Solution:
     def deleteDuplicates(self, head: Optional[ListNode]) -> Optional[ListNode]:
         #現在のノードと次のノードが重複していれば、つなぎ変える
-        def is_duplicates(current):
+        def reconnect_nodes(current):
             while current is not None and current.next is not None:
                 if current.val == current.next.val:
                     current.next = current.next.next
@@ -49,7 +49,7 @@ class Solution:
                 current = current.next
         
         current = head
-        is_duplicates(current)
+        reconnect_nodes(current)
         return head
 #意味ないかも
 #長々とした同じような処理が繰り返して続いたら関数でまとめちゃう気持ちかな？
