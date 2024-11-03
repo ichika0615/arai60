@@ -1,4 +1,4 @@
-#　ハッシュセットを使う
+# ハッシュセットを使う
 
 ```python
 class Solution:
