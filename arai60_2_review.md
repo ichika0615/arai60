@@ -16,7 +16,7 @@ class Solution:
 - tc O(n)
 - sc O(n)
 
-#　Floydの循環検出法を応用
+# Floydの循環検出法を応用
 
 ```python
 class Solution:
