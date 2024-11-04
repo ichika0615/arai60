@@ -48,7 +48,6 @@ class Solution:
         while current:
             if next_duplicated(current):
                 current.next = skip_nodes(current.next, current.val)
-                continue
             current = current.next
 
         return head
@@ -72,7 +71,7 @@ class Solution:
         while current:
             if next_duplicated(current):
                 current.next = skip_nodes(current.next, current.val)
-                continue
+                continue #continueいらない。
             current = current.next
 
         return head
