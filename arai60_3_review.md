@@ -35,9 +35,8 @@ class Solution:
 ```python
 class Solution:
     def deleteDuplicates(self, head: Optional[ListNode]) -> Optional[ListNode]:
-
-        def next_duplicated(node):
-            return node and node.next and node.val == node.next.val
+        def next_duplicated(node) -> bool:
+            return node.next and node.val == node.next.val
         
         def skip_nodes(node, val_to_skip):
             while node and node.val == val_to_skip:
@@ -47,9 +46,8 @@ class Solution:
         current = head
         while current:
             if next_duplicated(current):
-                current.next = skip_nodes(current.next, current.val)
+                current.next = skip_nodes(current, current.val)
             current = current.next
-
         return head
 ```
 
