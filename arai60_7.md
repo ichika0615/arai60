@@ -47,7 +47,7 @@ class Solution:
 
         while node_vals != []:
             node = ListNode(node_vals.pop())
-            reersed_list.next = node
+            reversed_list.next = node
             reversed_list = node
         
         return dummy.next
