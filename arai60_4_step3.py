@@ -43,4 +43,4 @@ class Solution:
 # 所望のリストを構成していく変数に見えるので、list_designerとした。
 
 
-    
+  

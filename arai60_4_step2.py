@@ -2,7 +2,7 @@ class Solution:
     def deleteDuplicates(self, head: Optional[ListNode]) -> Optional[ListNode]:
         each_node_nums = {} 
         #key: values of nodes 
-        #vals: frequence
+        #vals: frequency
 
         current = head
         while current:
