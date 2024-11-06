@@ -88,6 +88,29 @@ def skip_until_value_changes(current_node) -> Optional[ListNode]:
                 current_node = current_node.next
             return current_node
 ```
+## 再帰
+```python
+class Solution:
+    def deleteDuplicates(self, head: Optional[ListNode], visited_nodes=None) -> Optional[ListNode]:
+        # 再帰関数にやって欲しいこと：重複しているノードを消す。重複してないやつはそのまま残す。
+
+        #停止条件
+        if not head or not head.next:
+            return head
+
+        # 重複したノードを取り消す
+        if head.next and head.val == head.next.val:
+            val_to_delete = head.val
+            while head and head.val == val_to_delete:
+                head = head.next
+            return self.deleteDuplicates(head)
+        
+        # 重複してないノードは残しておく。
+        else:
+            head.next = self.deleteDuplicates(head.next)
+            return head
+```
+- なかなか腑に落ちず、難しく感じた。
 
 # Step 3
 ## 先頭から走査していって、削除するべきノード(隣のノードと値が同じ)があったら、削除する値(val_to_delete)として保存。走査してval_to_deleteである間は削除し続ける。
