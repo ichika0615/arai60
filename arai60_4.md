@@ -167,7 +167,8 @@ class Solution:
 ```
 - tc:O(n)/ sc:O(1)
 
-## 一重ループで申し送る。
+## 一重ループ
+- 重複の検出、重複したノードの削除を完全に分けてしまう。
 ```python
 class Solution:
     def deleteDuplicates(self, head: Optional[ListNode], visited_nodes=None) -> Optional[ListNode]:
