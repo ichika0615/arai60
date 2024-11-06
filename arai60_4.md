@@ -23,9 +23,10 @@ class Solution:
         
         return dummy.next
 ```
+- tc:O(n)/ sc:O(n)
 
 - 既存の連結リストを改造する
-- 先頭から走査していって、削除するべきノード(隣のノードと値が同じ)があったら、削除する値(val_to_delete)である間は削除し続ける。
+- 先頭から走査していって、削除するべきノード(隣のノードと値が同じ)があったら、削除する値(val_to_delete)として保存。走査してval_to_deleteである間は削除し続ける。
 ```python
 class Solution:
     def deleteDuplicates(self, head: Optional[ListNode], visited_nodes=None) -> Optional[ListNode]:
@@ -47,6 +48,8 @@ class Solution:
 
         return dummy.next
 ```
+- tc:O(n)/ sc:O(1)
+
 # Step2
 - 他の方のコードを見たりする。
 - ノードの切り替えを関数で切り出す
@@ -75,6 +78,7 @@ class Solution:
         distinct_list.next = None
         return dummy.next
 ```
+- tc:O(n)/ sc:O(1)
 - return current_node.nextがキモいなら、これでもいい。
 ```python
 def skip_until_value_changes(current_node) -> Optional[ListNode]:
@@ -83,5 +87,92 @@ def skip_until_value_changes(current_node) -> Optional[ListNode]:
             while current_node and current_node.val == val_to_delete:
                 current_node = current_node.next
             return current_node
+```
+
+# Step 3
+- 先頭から走査していって、削除するべきノード(隣のノードと値が同じ)があったら、削除する値(val_to_delete)として保存。走査してval_to_deleteである間は削除し続ける。
+```python
+class Solution:
+    def deleteDuplicates(self, head: Optional[ListNode], visited_nodes=None) -> Optional[ListNode]:
+        dummy = ListNode()
+        distinct_list = dummy
+        current = head
+
+        while current:
+            if current.next and current.val == current.next.val:
+                val_to_delete = current.val
+                while current and current.val == val_to_delete:
+                    current = current.next
+                continue
+            distinct_list.next = current
+            distinct_list = distinct_list.next
+            current = current.next
+
+        distinct_list.next = None 
+        return dummy.next
+```
+- tc:O(n)/ sc:O(1)
+
+- 関数切り出し
+```python
+class Solution:
+    def deleteDuplicates(self, head: Optional[ListNode], visited_nodes=None) -> Optional[ListNode]:
+        def skip_until_value_changes(current_node) -> Optional[ListNode]:
+            # skips until a node value changes and returns a node with a different value
+            val_to_delete = current_node.val
+            while current_node and current_node.val == val_to_delete:
+                current_node = current_node.next
+            return current_node
+        
+        # We are going to make a linked list from scratch, so preparing a dummy node is a good idea.
+        dummy = ListNode(-1000)
+        distinct_list = dummy
+        current = head
+
+        while current:
+            if current.next and current.val == current.next.val:
+                current = skip_until_value_changes(current)
+                continue
+            distinct_list.next = current
+            distinct_list = distinct_list.next
+            current = current.next
+        
+        distinct_list.next = None
+
+        return dummy.next
+```
+- tc:O(n)/ sc:O(1)
+
+- 一重ループで申し送る。
+```python
+class Solution:
+    def deleteDuplicates(self, head: Optional[ListNode], visited_nodes=None) -> Optional[ListNode]:
+        dummy = ListNode()
+        distinct_list = dummy
+        current = head
+        val_to_delete = None
+
+        while current:
+            if current.val == val_to_delete:
+                current = current.next
+                continue
+            if current.next and current.val == current.next.val:
+                val_to_delete = current.val
+                continue
+            distinct_list.next = current
+            distinct_list = distinct_list.next
+            current = current.next
+        
+        distinct_list.next = None
+
+        return dummy.next
+```
+- tc:O(n)/ sc:O(1)
+
+- このコードを上側に持ってくると永遠に足踏みする。一回間違えた。
+```python 
+if current.next and current.val == current.next.val:
+                val_to_delete = current.val
+                continue
 ```
 
