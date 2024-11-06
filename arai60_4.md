@@ -1,6 +1,6 @@
 # Step1
 - 新しく所望の連結リストを作る or 既存の連結リストを改造して所望の連結リストを得る
-- 新しく連結リストを作る。
+## 新しく連結リストを作る。 
 - headからノードを順に走査していき、その値と値の出現回数をハッシュテーブルに記録する。次にそのハッシュテーブルを走査して、出現回数が1の値のノードを作ってつなぎ、連結リストを得る。
 
 ```python
@@ -25,7 +25,7 @@ class Solution:
 ```
 - tc:O(n)/ sc:O(n)
 
-- 既存の連結リストを改造する
+## 既存の連結リストを改造する
 - 先頭から走査していって、削除するべきノード(隣のノードと値が同じ)があったら、削除する値(val_to_delete)として保存。走査してval_to_deleteである間は削除し続ける。
 ```python
 class Solution:
@@ -52,7 +52,7 @@ class Solution:
 
 # Step2
 - 他の方のコードを見たりする。
-- ノードの切り替えを関数で切り出す
+## ノードの切り替えを関数で切り出す
 ```python
 class Solution:
     def deleteDuplicates(self, head: Optional[ListNode], visited_nodes=None) -> Optional[ListNode]:
@@ -90,7 +90,7 @@ def skip_until_value_changes(current_node) -> Optional[ListNode]:
 ```
 
 # Step 3
-- 先頭から走査していって、削除するべきノード(隣のノードと値が同じ)があったら、削除する値(val_to_delete)として保存。走査してval_to_deleteである間は削除し続ける。
+## 先頭から走査していって、削除するべきノード(隣のノードと値が同じ)があったら、削除する値(val_to_delete)として保存。走査してval_to_deleteである間は削除し続ける。
 ```python
 class Solution:
     def deleteDuplicates(self, head: Optional[ListNode], visited_nodes=None) -> Optional[ListNode]:
@@ -113,7 +113,7 @@ class Solution:
 ```
 - tc:O(n)/ sc:O(1)
 
-- 関数切り出し
+## 関数切り出し
 ```python
 class Solution:
     def deleteDuplicates(self, head: Optional[ListNode], visited_nodes=None) -> Optional[ListNode]:
@@ -143,7 +143,7 @@ class Solution:
 ```
 - tc:O(n)/ sc:O(1)
 
-- 一重ループで申し送る。
+## 一重ループで申し送る。
 ```python
 class Solution:
     def deleteDuplicates(self, head: Optional[ListNode], visited_nodes=None) -> Optional[ListNode]:
