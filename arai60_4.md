@@ -89,6 +89,7 @@ def skip_until_value_changes(current_node) -> Optional[ListNode]:
             return current_node
 ```
 ## 再帰
+- 再帰の深さは最大、ノードの長さN。制約条件ではリストは最大300の長さなので、十分に再帰で実装できる。
 ```python
 class Solution:
     def deleteDuplicates(self, head: Optional[ListNode], visited_nodes=None) -> Optional[ListNode]:
