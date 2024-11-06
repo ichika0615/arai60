@@ -49,6 +49,7 @@ class Solution:
 ```
 # Step2
 - 他の方のコードを見たりする。
+- ノードの切り替えを関数で切り出す
 ```python
 class Solution:
     def deleteDuplicates(self, head: Optional[ListNode], visited_nodes=None) -> Optional[ListNode]:
@@ -74,3 +75,13 @@ class Solution:
         distinct_list.next = None
         return dummy.next
 ```
+- return current_node.nextがキモいなら、これでもいい。
+```python
+def skip_until_value_changes(current_node) -> Optional[ListNode]:
+            # skips until a node value changes and returns a first node with a different value
+            val_to_delete = current_node.val
+            while current_node and current_node.val == val_to_delete:
+                current_node = current_node.next
+            return current_node
+```
+
