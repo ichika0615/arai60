@@ -160,7 +160,7 @@ class Solution:
 class Solution:
     def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
         def reverseNodes(current, previous):
-            # base case
+            # ベースケース
             if current is None:
                 return previous
             
