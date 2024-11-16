@@ -45,11 +45,13 @@ class Solution:
             current = current.next
             
         distinct_list.next = None
+        
 
         return dummy.next
 ```
 - tc:O(n)/ sc:O(1)
-
+- 既存のノードをそのまま使う時は、連結リストの尻尾を明記しよう。
+- 新しく作るときは、デフォルトでnext=Noneだったりするのであんまり考えなくていい。
 # Step2
 - 他の方のコードを見たりする。
 ## ノードの切り替えを関数で切り出す
