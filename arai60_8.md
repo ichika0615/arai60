@@ -108,3 +108,21 @@ class KthLargest:
             heapq.heappop(self.top_k_scores)
         return self.top_k_scores[0]
 ```
+
+## heapifyを使う
+```python
+class KthLargest:
+
+    def __init__(self, k: int, nums: List[int]):
+        heapq.heapify(nums)
+        self.k = k
+        self.top_k_scores = nums
+        while self.k < len(self.top_k_scores):
+            heapq.heappop(self.top_k_scores)
+
+    def add(self, val: int) -> int:
+        heapq.heappush(self.top_k_scores, val)
+        while self.k < len(self.top_k_scores):
+            heapq.heappop(self.top_k_scores)
+        return self.top_k_scores[0]
+```
