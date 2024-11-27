@@ -126,3 +126,18 @@ class KthLargest:
             heapq.heappop(self.top_k_scores)
         return self.top_k_scores[0]
 ```
+## heap実装
+```python
+# minimum heap is implemented.
+class Heap:
+    def __init__(self):
+        self.heap = []  #heap
+
+    # methods
+    def heappush(item):
+        self.heap.append(item)
+        _siftup(0, len(self.heap)-1):
+
+```
+
+
