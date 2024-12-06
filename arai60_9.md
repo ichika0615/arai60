@@ -66,4 +66,29 @@ class Solution:
             if len(top_k_values) >= k:
                 return top_k_values[:k]
 ```
+### コードを整理して見やすくする。
+#### 値と頻度をタプルとしてリストに格納して、頻度順でソートする。先頭からk個値を出力する。
+```python
+class Solution:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        values_to_frequency = {}
+        for num in nums:
+            values_to_frequency[num] = 1 + values_to_frequency.get(num, 0)
+        
+        most_frequent_values = []
+        for value, frequency in values_to_frequency.items():
+            most_frequent_values.append((value, frequency))
+        
+        most_frequent_values.sort(reverse=True, key=operator.itemgetter(1))
+
+        if k < len(most_frequent_values):
+            most_frequent_values = most_frequent_values[:k]
+        
+        return [value for value, _ in most_frequent_values]
+```
+- operatorライブラリの確認
+- https://docs.python.org/ja/3/library/operator.html
+- 機能が結構多いが、主なものは後で手で実装しておく。
+
+#### ヒープを使う。
 
