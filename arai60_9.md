@@ -233,7 +233,7 @@ class Solution:
         
         return [value for value, _ in frequent_values]
 ```
-###　ヒープを用いる。ヒープに値と頻度のタプルを入れていき、k個になるまでpopして値を出力。
+### ヒープを用いる。ヒープに値と頻度のタプルを入れていき、k個になるまでpopして値を出力。
 ```python
 class Solution:
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
