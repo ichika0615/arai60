@@ -1,8 +1,8 @@
 # Step 1
-- 初見ではビビるぐらい何もわからなかった。まず解答の形式すらつかめなかった。他の方のコードを見てやっと理解した。
+- 解答の形式を掴むのが難しかった。他の方のコードを見てちゃんと理解した。
 # Step 2
 
-## ソートを用いる
+## ソートを用いる。リストに点数を格納して、新しいスコアが追加されたらいちいちソートする。
 - まず初期状態のリストを降順にソートして、addメソッドが呼びだされるたびに値を追加してまたソートする。k番目をインデクスで指定して取り出す。
 ```python
 class KthLargest:
@@ -79,16 +79,18 @@ class KthLargest:
 
     def __init__(self, k: int, nums: List[int]):
         self.k = k
-        self.nums = sorted(nums, reverse=True)
-        if self.k < len(self.nums):
-            self.nums = self.nums[:self.k]
+        self.top_k_scores = nums
+        self.top_k_scores.sort(reverse=True)
+        if k < len(self.top_k_scores):
+            self.top_k_scores = self.top_k_scores[:k]
+
 
     def add(self, val: int) -> int:
-        self.nums.append(val)
-        self.nums.sort(reverse=True)
-        if self.k < len(self.nums):
-            self.nums = self.nums[:self.k]
-        return self.nums[-1]
+        self.top_k_scores.append(val)
+        self.top_k_scores.sort(reverse=True)
+        if self.k < len(self.top_k_scores):
+            self.top_k_scores = self.top_k_scores[:self.k]
+        return self.top_k_scores[-1]
 ```
 ## heapを用いる方法
 ```python
@@ -99,13 +101,13 @@ class KthLargest:
         self.top_k_scores = []  #heap
         for num in nums:
             heapq.heappush(self.top_k_scores, num)
-        while self.k < len(self.top_k_scores):
-            heapq.heappop(self.top_k_scores)
+            while self.k < len(self.top_k_scores):
+                heapq.heappop(self.top_k_scores)
 
     def add(self, val: int) -> int:
         heapq.heappush(self.top_k_scores, val)
         while self.k < len(self.top_k_scores):
-            heapq.heappop(self.top_k_scores)
+                heapq.heappop(self.top_k_scores)
         return self.top_k_scores[0]
 ```
 
@@ -114,9 +116,9 @@ class KthLargest:
 class KthLargest:
 
     def __init__(self, k: int, nums: List[int]):
-        heapq.heapify(nums)
         self.k = k
-        self.top_k_scores = nums
+        heapq.heapify(nums)
+        self.top_k_scores = nums  # heap
         while self.k < len(self.top_k_scores):
             heapq.heappop(self.top_k_scores)
 
