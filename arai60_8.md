@@ -131,3 +131,40 @@ class KthLargest:
 heap実装が難しくてできなかった。よく考えてやってみます。できたらまたアップします。
 
 
+## 無理やりクイックセレクト
+```python
+class KthLargest:
+
+    def __init__(self, k: int, nums: List[int]):
+       self.k = k
+       self.top_k_scores = []
+       for num in nums:
+        self.top_k_scores.append(num)
+
+    def quick_select(self, left, right):
+        pivot_index = random.randint(left, right)
+        pivot = self.top_k_scores[pivot_index]
+        self.top_k_scores[pivot_index] , self.top_k_scores[right] = self.top_k_scores[right], self.top_k_scores[pivot_index]
+
+        partition_index = left
+        for i in range(left, right):
+            if self.top_k_scores[i] > pivot:
+                self.top_k_scores[i], self.top_k_scores[partition_index] = self.top_k_scores[partition_index], self.top_k_scores[i]
+                partition_index += 1
+        
+        self.top_k_scores[partition_index], self.top_k_scores[right] = self.top_k_scores[right], self.top_k_scores[partition_index]
+
+        if partition_index == self.k - 1:
+            return None
+        elif partition_index < self.k - 1:
+            return self.quick_select(partition_index + 1, right)
+        elif partition_index > self.k - 1:
+            return self.quick_select(left, partition_index - 1)
+
+    def add(self, val: int) -> int:
+        self.top_k_scores.append(val)
+        self.quick_select(0, len(self.top_k_scores)-1)
+        return self.top_k_scores[self.k - 1]
+```
+
+まぁ想定解ではないでしょう。
