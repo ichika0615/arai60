@@ -37,7 +37,8 @@ class KthLargest:
             self.nums = self.nums[:self.k]
         return self.nums[-1]
 ```
-- 時間計算量: O(nlogn)  空間計算量: O(n)
+- 時間計算量: __init__ O(nlogn)  add O(nlogn)
+- 空間計算量: O(n)
 
 ## 優先度付きキュー(ヒープ)を用いる。
 ```python
