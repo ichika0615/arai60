@@ -17,7 +17,8 @@ class KthLargest:
         self.nums.sort(reverse=True)
         return self.nums[self.k - 1]
 ```
-- 時間計算量: O(nlogn)  空間計算量: O(n)
+- 時間計算量: __init__ O(nlogn)  add O(nlogn)
+- 空間計算量: O(n)
 
 ## k番目より低い点数はいらないから除外する。addメソッドでは末尾のアイテムを取り出せばそれが答え。
 ```python
@@ -56,7 +57,8 @@ class KthLargest:
         return self.nums[0]
 ```
 - heapq.heapify()は破壊的。
-- 時間計算量: O(logn)  空間計算量: O(n)
+- 時間計算量: __init__ O(nlogn)  add O(logn)
+- 空間計算量: O(n)
 
 
 ### heapifyの代わりにheappushを使用
@@ -76,6 +78,9 @@ class KthLargest:
             heapq.heappop(self.top_k_scores)
         return self.top_k_scores[0]
 ```
+- 時間計算量: __init__ O(nlogn)  add O(logn)
+- 空間計算量: O(n)
+
 # Step 3
 ## リストを用いる方法
 ```python
@@ -96,6 +101,9 @@ class KthLargest:
             self.top_k_scores = self.top_k_scores[:self.k]
         return self.top_k_scores[-1]
 ```
+- 時間計算量: __init__ O(nlogn)  add O(logn)
+- 空間計算量: O(n)
+
 ## heapを用いる方法
 ```python
 class KthLargest:
@@ -170,5 +178,7 @@ class KthLargest:
         self.quick_select(0, len(self.top_k_scores)-1)
         return self.top_k_scores[self.k - 1]
 ```
+- 時間計算量: __init__ O(n)  quick_select: O(n)(最悪計算量: O(n^2))  add O(n)
+- 空間計算量: O(n)
 
 まぁ想定解ではないでしょう。
