@@ -17,6 +17,7 @@ class KthLargest:
         self.nums.sort(reverse=True)
         return self.nums[self.k - 1]
 ```
+- 時間計算量: O(nlogn)  空間計算量: O(n)
 
 ## k番目より低い点数はいらないから除外する。addメソッドでは末尾のアイテムを取り出せばそれが答え。
 ```python
@@ -35,6 +36,7 @@ class KthLargest:
             self.nums = self.nums[:self.k]
         return self.nums[-1]
 ```
+- 時間計算量: O(nlogn)  空間計算量: O(n)
 
 ## 優先度付きキュー(ヒープ)を用いる。
 ```python
@@ -54,6 +56,8 @@ class KthLargest:
         return self.nums[0]
 ```
 - heapq.heapify()は破壊的。
+- 時間計算量: O(logn)  空間計算量: O(n)
+
 
 ### heapifyの代わりにheappushを使用
 ```python
