@@ -86,5 +86,20 @@ def merge(left, right):
     return merged
 ```
 - インプレースなマージソートもあるにはある。
-- 👌最悪計算量はO(nlogn)で抑えられている/ 安定ソートである
+- 👌最悪計算量はO(nlogn)で抑えられている/ 安定ソートである/ 大規模な入力に対して有効
 - 👎キャッシュミスしやすいので定数オーバーヘッドが大きい
+
+# Insertion Sort
+```python
+def insertion_sort(arr):
+
+    for i in range(1, len(arr)):
+        key = arr[i]
+        j = i - 1
+        while j >= 0 and arr[j] > key:
+            arr[j + 1] = arr[j]
+            j -= 1
+        arr[j + 1] = key
+    return arr
+```
+- オンラインアルゴリズムである
